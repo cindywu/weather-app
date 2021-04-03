@@ -50,7 +50,7 @@ function formatTime(timestamp) {
   return format(new Date(timestamp), "ha")
 }
 
-const currentIcon = document.querySelector("[data-current-icon]")
+const currentIcon = document.querySelector("[data-current-icon")
 function renderCurrentWeather(current) {
   currentIcon.src = getIconUrl(current.icon, { large: true })
   setValue("current-temp", current.currentTemp)
@@ -71,7 +71,7 @@ function renderDailyWeather(daily) {
     const element = dayCardTemplate.content.cloneNode(true)
     setValue("temp", day.temp, { parent: element })
     setValue("date", formatDay(day.timestamp), { parent: element})
-    element.querySelector("[data-icon").src = getIconUrl(day.icon)
+    element.querySelector("[data-icon]").src = getIconUrl(day.icon)
     dailySection.append(element)
   })
 }
@@ -88,7 +88,7 @@ function renderHourlyWeather(hourly) {
     setValue("fl-precip", hour.precip, { parent: element})
     setValue("day", formatDay(hour.timestamp), { parent: element})
     setValue("time", formatTime(hour.timestamp), { parent: element})
-    element.querySelector("[data-icon").src = getIconUrl(hour.icon)
+    element.querySelector("[data-icon]").src = getIconUrl(hour.icon)
     hourlySection.append(element)
   })
 
