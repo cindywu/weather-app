@@ -50,7 +50,7 @@ function formatTime(timestamp) {
   return format(new Date(timestamp), "ha")
 }
 
-const currentIcon = document.querySelector("[data-current-icon")
+const currentIcon = document.querySelector("[data-current-icon]")
 function renderCurrentWeather(current) {
   currentIcon.src = getIconUrl(current.icon, { large: true })
   setValue("current-temp", current.currentTemp)
