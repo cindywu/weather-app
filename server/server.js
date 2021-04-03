@@ -52,7 +52,7 @@ function parseDailyWeather({ daily }) {
     return {
       timestamp: day.dt * 1000,
       icon: day.weather[0].icon,
-      temp: day.temp.day
+      temp: Math.round(day.temp.day)
     }
   })
 }
