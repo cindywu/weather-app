@@ -9,7 +9,7 @@ function positionSuccess({ coords }) {
 
 function positionError() {
   alert(
-    "There was an error."
+    "There was an error getting your location. Please allow us to use your location and refresh the page."
   )
 }
 
@@ -20,10 +20,11 @@ function getWeather(lat, lon) {
     })
     .then(res => {
       renderWeather(res.data)
-    }).catch(e => {
+    })
+    .catch(e => {
       console.log(e)
       alert('Error getting weather. Please try again.')
-  })
+    })
 }
 
 function renderWeather({ current, daily, hourly }) {
@@ -50,7 +51,7 @@ function formatTime(timestamp) {
   return format(new Date(timestamp), "ha")
 }
 
-const currentIcon = document.querySelector("[data-current-icon]")
+const currentIcon = document.querySelector('[data-current-icon]')
 function renderCurrentWeather(current) {
   currentIcon.src = getIconUrl(current.icon, { large: true })
   setValue("current-temp", current.currentTemp)
@@ -64,13 +65,13 @@ function renderCurrentWeather(current) {
 }
 
 const dailySection = document.querySelector('[data-day-section]')
-const dayCardTemplate = document.getElementById("day-card-template")
+const dayCardTemplate = document.getElementById('day-card-template')
 function renderDailyWeather(daily) {
-  dailySection.innterHTML = ''
+  dailySection.innerHTML = ''
   daily.forEach(day => {
     const element = dayCardTemplate.content.cloneNode(true)
     setValue("temp", day.temp, { parent: element })
-    setValue("date", formatDay(day.timestamp), { parent: element})
+    setValue("date", formatDay(day.timestamp), { parent: element })
     element.querySelector("[data-icon]").src = getIconUrl(day.icon)
     dailySection.append(element)
   })
@@ -79,17 +80,16 @@ function renderDailyWeather(daily) {
 const hourlySection = document.querySelector('[data-hour-section]')
 const hourRowTemplate = document.getElementById('hour-row-template')
 function renderHourlyWeather(hourly) {
-  hourlySection.innerHTML= ''
+  hourlySection.innerHTML = ''
   hourly.forEach(hour => {
     const element = hourRowTemplate.content.cloneNode(true)
-    setValue("temp", hour.temp, { parent: element})
-    setValue("fl-temp", hour.feelsLike, { parent: element})
-    setValue("wind", hour.windSpeed, { parent: element})
-    setValue("precip", hour.precip, { parent: element})
-    setValue("day", formatDay(hour.timestamp), { parent: element})
-    setValue("time", formatTime(hour.timestamp), { parent: element})
-    element.querySelector("[data-icon]").src = getIconUrl(hour.icon)
+    setValue('temp', hour.temp, { parent: element })
+    setValue('fl-temp', hour.feelsLike, { parent: element })
+    setValue('wind', hour.windSpeed, { parent: element })
+    setValue('precip', hour.precip, { parent: element })
+    setValue('day', formatDay(hour.timestamp), { parent: element })
+    setValue('time', formatTime(hour.timestamp), { parent: element })
+    element.querySelector('[data-icon]').src = getIconUrl(hour.icon)
     hourlySection.append(element)
   })
-
 }
