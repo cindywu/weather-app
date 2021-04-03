@@ -20,9 +20,9 @@ function getWeather(lat, lon) {
     })
     .then(res => {
       renderWeather(res.data)
-  }).catch(e => {
-    console.log(e)
-    alert('Error getting weather. Please try again.')
+    }).catch(e => {
+      console.log(e)
+      alert('Error getting weather. Please try again.')
   })
 }
 
@@ -84,8 +84,8 @@ function renderHourlyWeather(hourly) {
     const element = hourRowTemplate.content.cloneNode(true)
     setValue("temp", hour.temp, { parent: element})
     setValue("fl-temp", hour.feelsLike, { parent: element})
-    setValue("fl-wind", hour.windSpeed, { parent: element})
-    setValue("fl-precip", hour.precip, { parent: element})
+    setValue("wind", hour.windSpeed, { parent: element})
+    setValue("precip", hour.precip, { parent: element})
     setValue("day", formatDay(hour.timestamp), { parent: element})
     setValue("time", formatTime(hour.timestamp), { parent: element})
     element.querySelector("[data-icon]").src = getIconUrl(hour.icon)
